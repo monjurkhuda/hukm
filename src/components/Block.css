@@ -1,0 +1,17 @@
+.block_container {
+  width: 32px;
+  height: 32px;
+  font-size: x-small;
+}
+
+.ocean {
+  background-color: cornflowerblue;
+}
+
+.land {
+  background-color: darkseagreen;
+}
+
+.mountain {
+  background-color: brown;
+}
