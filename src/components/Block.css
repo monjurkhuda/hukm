@@ -15,3 +15,33 @@
 .mountain {
   background-color: brown;
 }
+
+.China {
+  box-sizing: border-box;
+  border: 2px solid red;
+}
+
+.India {
+  box-sizing: border-box;
+  border: 2px solid orange;
+}
+
+.Bangladesh {
+  box-sizing: border-box;
+  border: 2px solid green;
+}
+
+.Nepal {
+  box-sizing: border-box;
+  border: 2px solid black;
+}
+
+.Mayanmar {
+  box-sizing: border-box;
+  border: 2px solid blue;
+}
+
+.SriLanka {
+  box-sizing: border-box;
+  border: 2px solid purple;
+}
