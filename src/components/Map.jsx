@@ -102,8 +102,20 @@ var mapData = [
   { lat: 8, long: 6, type: "ocean" },
   { lat: 8, long: 7, type: "ocean" },
   { lat: 8, long: 8, type: "ocean" },
-  { lat: 8, long: 9, type: "ocean" },
-  { lat: 8, long: 10, type: "land", country: "Bangladesh" },
+  {
+    lat: 8,
+    long: 9,
+    type: "ocean",
+    localeType: "port",
+    localeName: "Ctg",
+    country: "Bangladesh",
+  },
+  {
+    lat: 8,
+    long: 10,
+    type: "land",
+    country: "Bangladesh",
+  },
   { lat: 8, long: 11, type: "land", country: "Bangladesh" },
   { lat: 8, long: 12, type: "land", country: "Bangladesh" },
 
@@ -169,6 +181,8 @@ function Map() {
           long={block.long}
           type={block.type}
           country={block.country}
+          localeType={block.localeType}
+          localeName={block.localeName}
         />
       ))}
     </div>
