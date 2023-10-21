@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Map.css";
 import Block from "./Block";
 
@@ -173,6 +173,8 @@ var mapData = [
 ];
 
 function Map() {
+  const [showCoordinates, setShowcoordinates] = useState(false);
+
   return (
     <div className="map_container">
       {mapData.map((block) => (
@@ -183,8 +185,12 @@ function Map() {
           country={block.country}
           localeType={block.localeType}
           localeName={block.localeName}
+          showCoordinates={showCoordinates}
         />
       ))}
+      <button onClick={() => setShowcoordinates(!showCoordinates)}>
+        Coordinates
+      </button>
     </div>
   );
 }
