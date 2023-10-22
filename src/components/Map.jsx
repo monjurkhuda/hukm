@@ -50,8 +50,8 @@ var mapData = [
   { lat: 4, long: 6, type: "land", country: "India" },
   { lat: 4, long: 7, type: "land", country: "India" },
   { lat: 4, long: 8, type: "land", country: "India" },
-  { lat: 4, long: 9, type: "land", country: "Bangladesh" },
-  { lat: 4, long: 10, type: "land", country: "Bangladesh" },
+  { lat: 4, long: 9, type: "land", country: "Bangladesh", region: "Pabna" },
+  { lat: 4, long: 10, type: "land", country: "Bangladesh", region: "Pabna" },
   { lat: 4, long: 11, type: "land", country: "India" },
   { lat: 4, long: 12, type: "land", country: "India" },
 
@@ -91,7 +91,7 @@ var mapData = [
   { lat: 7, long: 8, type: "ocean" },
   { lat: 7, long: 9, type: "ocean" },
   { lat: 7, long: 10, type: "land", country: "Bangladesh" },
-  { lat: 7, long: 11, type: "land", country: "Bangladesh" },
+  { lat: 7, long: 11, type: "land", country: "Bangladesh", region: "Dhaka" },
   { lat: 7, long: 12, type: "land", country: "Bangladesh" },
 
   { lat: 8, long: 1, type: "land", country: "India" },
@@ -172,6 +172,25 @@ var mapData = [
   { lat: 12, long: 12, type: "land", country: "Mayanmar" },
 ];
 
+var regionData = {
+  Pabna: {
+    country: "Bangladesh",
+    infantry: 20,
+    airDefenseArtillery: 2,
+    armor: 5,
+    fieldArtillery: 10,
+    specialForces: 5,
+  },
+  Dhaka: {
+    country: "Bangladesh",
+    infantry: 10,
+    airDefenseArtillery: 3,
+    armor: 0,
+    fieldArtillery: 0,
+    specialForces: 0,
+  },
+};
+
 function Map() {
   const [showCoordinates, setShowcoordinates] = useState(false);
 
@@ -183,14 +202,21 @@ function Map() {
           long={block.long}
           type={block.type}
           country={block.country}
+          region={block.region}
           localeType={block.localeType}
           localeName={block.localeName}
           showCoordinates={showCoordinates}
         />
       ))}
-      <button onClick={() => setShowcoordinates(!showCoordinates)}>
-        Coordinates
-      </button>
+      <div>
+        <button onClick={() => setShowcoordinates(!showCoordinates)}>
+          Coordinates
+        </button>
+      </div>
+      <div>
+        Infantry: 30, Air Defense Artillery: 5, Armor: 5, Field Artillery: 10,
+        Special Force: 5
+      </div>
     </div>
   );
 }

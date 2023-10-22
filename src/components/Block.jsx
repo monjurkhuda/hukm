@@ -9,6 +9,7 @@ function Block({
   lat,
   long,
   country,
+  region,
   showCoordinates,
 }) {
   return (
