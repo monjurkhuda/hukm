@@ -19,7 +19,7 @@ function Block({
           {lat}, {long}
         </>
       )}
-      <Locale localeType={localeType} localeName={localeName} />
+      <Locale localeType={localeType} localeName={region} />
     </div>
   );
 }

@@ -173,6 +173,9 @@ var mapData = [
 ];
 
 var regionData = {
+  "": {
+    infantry: 0,
+  },
   Pabna: {
     country: "Bangladesh",
     infantry: 20,
@@ -193,20 +196,25 @@ var regionData = {
 
 function Map() {
   const [showCoordinates, setShowcoordinates] = useState(false);
+  const [selectedRegion, setSelectedRegion] = useState("");
+  console.log(selectedRegion);
+  console.log(regionData[selectedRegion].infantry);
 
   return (
     <div className="map_container">
       {mapData.map((block) => (
-        <Block
-          lat={block.lat}
-          long={block.long}
-          type={block.type}
-          country={block.country}
-          region={block.region}
-          localeType={block.localeType}
-          localeName={block.localeName}
-          showCoordinates={showCoordinates}
-        />
+        <div onClick={() => setSelectedRegion(block.region)}>
+          <Block
+            lat={block.lat}
+            long={block.long}
+            type={block.type}
+            country={block.country}
+            region={block.region}
+            localeType={block.localeType}
+            localeName={block.localeName}
+            showCoordinates={showCoordinates}
+          />
+        </div>
       ))}
       <div>
         <button onClick={() => setShowcoordinates(!showCoordinates)}>
