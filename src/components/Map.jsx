@@ -173,9 +173,6 @@ var mapData = [
 ];
 
 var regionData = {
-  "": {
-    infantry: 0,
-  },
   Pabna: {
     country: "Bangladesh",
     infantry: 20,
@@ -197,8 +194,8 @@ var regionData = {
 function Map() {
   const [showCoordinates, setShowcoordinates] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState("");
-  console.log(selectedRegion);
-  console.log(regionData[selectedRegion].infantry);
+  //console.log(selectedRegion.length);
+  // console.log(regionData[selectedRegion]);
 
   return (
     <div className="map_container">
@@ -222,8 +219,23 @@ function Map() {
         </button>
       </div>
       <div>
-        Infantry: 30, Air Defense Artillery: 5, Armor: 5, Field Artillery: 10,
-        Special Force: 5
+        {selectedRegion?.length > 0 && (
+          <>
+            <div>{selectedRegion}</div>
+            <div>Infantry: {regionData[selectedRegion].infantry}</div>
+            <div>Armor: {regionData[selectedRegion].armor}</div>
+            <div>
+              Special Forces: {regionData[selectedRegion].specialForces}
+            </div>
+            <div>
+              Air Defense Artillery:{" "}
+              {regionData[selectedRegion].airDefenseArtillery}
+            </div>
+            <div>
+              Field Artillery: {regionData[selectedRegion].fieldArtillery}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
