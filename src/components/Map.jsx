@@ -237,6 +237,17 @@ function Map() {
           </>
         )}
       </div>
+      <div>
+        <select name="cars" id="cars">
+          <option value="attackmanipurfrompabna">
+            attack manipur from pabna
+          </option>
+          <option value="move10infantryfromdhakatopabna">
+            move 10 infantry from dhaka to pabna
+          </option>
+        </select>
+        <button>Do it!</button>
+      </div>
     </div>
   );
 }
