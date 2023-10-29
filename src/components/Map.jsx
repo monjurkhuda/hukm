@@ -25,7 +25,7 @@ var mapData = [
   { lat: 2, long: 7, type: "land", country: "Nepal" },
   { lat: 2, long: 8, type: "land", country: "Nepal" },
   { lat: 2, long: 9, type: "land", country: "Nepal" },
-  { lat: 2, long: 10, type: "land", country: "India" },
+  { lat: 2, long: 10, type: "land", country: "India", region: "Manipur" },
   { lat: 2, long: 11, type: "land", country: "China" },
   { lat: 2, long: 12, type: "land", country: "China" },
 
@@ -37,8 +37,8 @@ var mapData = [
   { lat: 3, long: 6, type: "land", country: "India" },
   { lat: 3, long: 7, type: "land", country: "India" },
   { lat: 3, long: 8, type: "land", country: "India" },
-  { lat: 3, long: 9, type: "land", country: "India" },
-  { lat: 3, long: 10, type: "land", country: "India" },
+  { lat: 3, long: 9, type: "land", country: "India", region: "Manipur" },
+  { lat: 3, long: 10, type: "land", country: "India", region: "Manipur" },
   { lat: 3, long: 11, type: "land", country: "India" },
   { lat: 3, long: 12, type: "land", country: "India" },
 
@@ -189,6 +189,14 @@ var regionData = {
     fieldArtillery: 0,
     specialForces: 0,
   },
+  Manipur: {
+    country: "India",
+    infantry: 25,
+    airDefenseArtillery: 1,
+    armor: 4,
+    fieldArtillery: 8,
+    specialForces: 4,
+  },
 };
 
 function Map() {
@@ -222,6 +230,7 @@ function Map() {
         {selectedRegion?.length > 0 && (
           <>
             <div>{selectedRegion}</div>
+            <div>Country: {regionData[selectedRegion].country}</div>
             <div>Infantry: {regionData[selectedRegion].infantry}</div>
             <div>Armor: {regionData[selectedRegion].armor}</div>
             <div>
