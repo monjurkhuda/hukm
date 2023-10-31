@@ -177,9 +177,9 @@ var regionData = {
     country: "Bangladesh",
     infantry: 20,
     airDefenseArtillery: 2,
-    armor: 5,
-    fieldArtillery: 10,
-    specialForces: 5,
+    armor: 4,
+    fieldArtillery: 8,
+    specialForces: 4,
   },
   Dhaka: {
     country: "Bangladesh",
@@ -192,7 +192,7 @@ var regionData = {
   Manipur: {
     country: "India",
     infantry: 25,
-    airDefenseArtillery: 1,
+    airDefenseArtillery: 2,
     armor: 4,
     fieldArtillery: 8,
     specialForces: 4,
@@ -204,8 +204,27 @@ function moveUnits(type, number, from, to) {
     regionData[from][type] -= number;
     regionData[to][type] += number;
   }
+}
 
-  console.log(regionData);
+function groundAttack(from, to) {
+  let attackerPoints =
+    regionData[from].infantry +
+    regionData[from].fieldArtillery * 2 +
+    regionData[from].specialForces * 3 +
+    +regionData[from].armor * 4;
+  let defenderPoints =
+    regionData[to].infantry +
+    regionData[to].fieldArtillery * 2 +
+    regionData[to].specialForces * 3 +
+    +regionData[to].armor * 4;
+
+  console.log(attackerPoints, defenderPoints);
+
+  if (attackerPoints > defenderPoints) {
+    console.log("Bangladesh wins");
+  } else {
+    console.log("India wins");
+  }
 }
 
 function Map() {
@@ -215,8 +234,14 @@ function Map() {
   //console.log(selectedRegion.length);
   // console.log(regionData[selectedRegion]);
 
+  console.log(choice);
+
   if (choice === "move10infantryfromdhakatopabna") {
     moveUnits("infantry", 10, "Dhaka", "Pabna");
+  }
+
+  if (choice === "groundattackmanipurfrompabna") {
+    groundAttack("Pabna", "Manipur");
   }
 
   return (
@@ -266,8 +291,9 @@ function Map() {
           id="cars"
           onChange={(e) => setChoice(e.target.value)}
         >
-          <option value="attackmanipurfrompabna">
-            attack manipur from pabna
+          <option>select action</option>
+          <option value="groundattackmanipurfrompabna">
+            ground attack manipur from pabna
           </option>
           <option value="move10infantryfromdhakatopabna">
             move 10 infantry from dhaka to pabna
