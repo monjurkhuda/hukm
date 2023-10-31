@@ -199,11 +199,25 @@ var regionData = {
   },
 };
 
+function moveUnits(type, number, from, to) {
+  if (regionData[from][type] >= number) {
+    regionData[from][type] -= number;
+    regionData[to][type] += number;
+  }
+
+  console.log(regionData);
+}
+
 function Map() {
   const [showCoordinates, setShowcoordinates] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState("");
+  const [choice, setChoice] = useState("");
   //console.log(selectedRegion.length);
   // console.log(regionData[selectedRegion]);
+
+  if (choice === "move10infantryfromdhakatopabna") {
+    moveUnits("infantry", 10, "Dhaka", "Pabna");
+  }
 
   return (
     <div className="map_container">
@@ -247,7 +261,11 @@ function Map() {
         )}
       </div>
       <div>
-        <select name="cars" id="cars">
+        <select
+          name="cars"
+          id="cars"
+          onChange={(e) => setChoice(e.target.value)}
+        >
           <option value="attackmanipurfrompabna">
             attack manipur from pabna
           </option>
