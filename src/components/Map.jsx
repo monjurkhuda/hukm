@@ -221,7 +221,13 @@ function groundAttack(from, to) {
   console.log(attackerPoints, defenderPoints);
 
   if (attackerPoints > defenderPoints) {
-    console.log("Bangladesh wins");
+    console.log("Bangladesh wins Manipur");
+    mapData.forEach((block) => {
+      if (block.region === to) {
+        regionData[to].country = regionData[from].country;
+        block.country = regionData[from].country;
+      }
+    });
   } else {
     console.log("India wins");
   }
