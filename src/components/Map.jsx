@@ -229,7 +229,7 @@ function groundAttack(from, to) {
       }
     });
   } else {
-    console.log("India wins");
+    console.log(regionData[to].country, " wins");
   }
 }
 
