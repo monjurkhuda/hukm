@@ -16,32 +16,46 @@
   background-color: brown;
 }
 
-.China {
+.leftBorder {
   box-sizing: border-box;
-  border: 2px solid red;
+  border-left: 2px solid;
+}
+
+.rightBorder {
+  box-sizing: border-box;
+  border-right: 2px solid;
+}
+
+.bottomBorder {
+  box-sizing: border-box;
+  border-bottom: 2px solid;
+}
+
+.topBorder {
+  box-sizing: border-box;
+  border-top: 2px solid;
+}
+
+.China {
+  border-color: red;
 }
 
 .India {
-  box-sizing: border-box;
-  border: 2px solid orange;
+  border-color: orange;
 }
 
 .Bangladesh {
-  box-sizing: border-box;
-  border: 2px solid green;
+  border-color: green;
 }
 
 .Nepal {
-  box-sizing: border-box;
-  border: 2px solid black;
+  border-color: black;
 }
 
 .Mayanmar {
-  box-sizing: border-box;
-  border: 2px solid blue;
+  border-color: blue;
 }
 
 .SriLanka {
-  box-sizing: border-box;
-  border: 2px solid purple;
+  border-color: purple;
 }

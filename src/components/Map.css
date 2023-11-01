@@ -2,8 +2,10 @@
   display: flex;
   /* width: 1152px;
   height: 768px; */
-  width: 384px;
-  height: 384px;
+  /* width: 384px;
+  height: 384px; */
+  width: 128px;
+  height: 96px;
   background-color: black;
   flex-wrap: wrap;
   font-size: xx-small;
