@@ -191,52 +191,90 @@ var mapData = [
 
 var mapObj = {
   11: {
+    lat: 1,
+    long: 1,
     type: "land",
     country: "India",
+    region: "Manipur",
   },
   12: {
-    type: "land",
+    lat: 1,
+    long: 2,
+    type: "ocean",
     country: "India",
+    region: "Manipur",
   },
   13: {
-    type: "ocean",
+    lat: 1,
+    long: 3,
+    type: "land",
     country: "India",
+    region: "Manipur",
   },
   14: {
-    type: "ocean",
+    lat: 1,
+    long: 4,
+    type: "land",
     country: "India",
+    region: "Manipur",
   },
   21: {
+    lat: 2,
+    long: 1,
     type: "land",
     country: "India",
+    region: "Manipur",
   },
   22: {
+    lat: 2,
+    long: 2,
     type: "land",
     country: "Bangladesh",
+    region: "Pabna",
   },
   23: {
-    type: "ocean",
+    lat: 2,
+    long: 3,
+    type: "land",
     country: "India",
+    region: "Kerala",
+    localeName: "Kerala",
+    localeType: "port",
   },
   24: {
-    type: "ocean",
+    lat: 2,
+    long: 4,
+    type: "land",
     country: "India",
+    region: "Nagaland",
   },
   31: {
+    lat: 3,
+    long: 1,
     type: "land",
     country: "India",
+    region: "Nagaland",
   },
   32: {
-    type: "land",
+    lat: 3,
+    long: 2,
+    type: "ocean",
     country: "India",
+    region: "Nagaland",
   },
   33: {
-    type: "ocean",
+    lat: 3,
+    long: 3,
+    type: "land",
     country: "India",
+    region: "Nagaland",
   },
   34: {
+    lat: 3,
+    long: 4,
     type: "ocean",
     country: "India",
+    region: "Nagaland",
   },
 };
 
@@ -320,7 +358,7 @@ function Map() {
 
   return (
     <div className="map_container">
-      {mapData.map((block) => (
+      {/* {mapData.map((block) => (
         <div onClick={() => setSelectedRegion(block.region)}>
           <Block
             lat={block.lat}
@@ -334,7 +372,24 @@ function Map() {
             mapObj={mapObj}
           />
         </div>
+      ))} */}
+
+      {Object.keys(mapObj).map((block, i) => (
+        <div onClick={() => setSelectedRegion(block.region)}>
+          <Block
+            lat={mapObj[block].lat}
+            long={mapObj[block].long}
+            type={mapObj[block].type}
+            country={mapObj[block].country}
+            region={mapObj[block].region}
+            localeType={mapObj[block].localeType}
+            localeName={mapObj[block].localeName}
+            showCoordinates={showCoordinates}
+            mapObj={mapObj}
+          />
+        </div>
       ))}
+
       <div>
         <button onClick={() => setShowcoordinates(!showCoordinates)}>
           Coordinates

@@ -15,39 +15,46 @@ function Block({
 }) {
   let borderClassName = "";
 
-  console.log(
-    mapObj[`${lat}${long}`]?.country,
-    mapObj[`${lat}${long - 1}`]?.country,
-    lat,
-    long
-  );
+  // console.log(mapObj);
+
+  console.log(mapObj[`${lat}${long - 1}`]?.type, lat, long);
 
   console.log(
     mapObj[`${lat}${long}`]?.country !== mapObj[`${lat}${long - 1}`]?.country
   );
 
-  if (
-    mapObj[`${lat}${long}`]?.country !== mapObj[`${lat}${long - 1}`]?.country
-  ) {
-    borderClassName += " leftBorder";
-  }
+  if (type !== "ocean") {
+    if (
+      mapObj[`${lat}${long}`]?.country !==
+        mapObj[`${lat}${long - 1}`]?.country &&
+      mapObj[`${lat}${long - 1}`]?.type !== "ocean"
+    ) {
+      borderClassName += " leftBorder";
+    }
 
-  if (
-    mapObj[`${lat}${long}`]?.country !== mapObj[`${lat}${long + 1}`]?.country
-  ) {
-    borderClassName += " rightBorder";
-  }
+    if (
+      mapObj[`${lat}${long}`]?.country !==
+        mapObj[`${lat}${long + 1}`]?.country &&
+      mapObj[`${lat}${long + 1}`]?.type !== "ocean"
+    ) {
+      borderClassName += " rightBorder";
+    }
 
-  if (
-    mapObj[`${lat}${long}`]?.country !== mapObj[`${lat + 1}${long}`]?.country
-  ) {
-    borderClassName += " bottomBorder";
-  }
+    if (
+      mapObj[`${lat}${long}`]?.country !==
+        mapObj[`${lat + 1}${long}`]?.country &&
+      mapObj[`${lat + 1}${long}`]?.type !== "ocean"
+    ) {
+      borderClassName += " bottomBorder";
+    }
 
-  if (
-    mapObj[`${lat}${long}`]?.country !== mapObj[`${lat - 1}${long}`]?.country
-  ) {
-    borderClassName += " topBorder";
+    if (
+      mapObj[`${lat}${long}`]?.country !==
+        mapObj[`${lat - 1}${long}`]?.country &&
+      mapObj[`${lat - 1}${long}`]?.type !== "ocean"
+    ) {
+      borderClassName += " topBorder";
+    }
   }
 
   return (
