@@ -44,6 +44,22 @@
   border-color: orange;
 }
 
+.regionalLeftBorder {
+  border-left: 1px dashed gray;
+}
+
+.regionalRightBorder {
+  border-right: 1px dashed gray;
+}
+
+.regionalTopBorder {
+  border-top: 1px dashed gray;
+}
+
+.regionalBottomBorder {
+  border-bottom: 1px dashed gray;
+}
+
 .Bangladesh {
   border-color: black;
 }

@@ -30,6 +30,11 @@ function Block({
       mapObj[`${lat}${long - 1}`]?.type !== "ocean"
     ) {
       borderClassName += " leftBorder";
+    } else if (
+      mapObj[`${lat}${long}`]?.region !== mapObj[`${lat}${long - 1}`]?.region &&
+      mapObj[`${lat}${long - 1}`]?.type !== "ocean"
+    ) {
+      borderClassName += " regionalLeftBorder";
     }
 
     if (
@@ -38,6 +43,11 @@ function Block({
       mapObj[`${lat}${long + 1}`]?.type !== "ocean"
     ) {
       borderClassName += " rightBorder";
+    } else if (
+      mapObj[`${lat}${long}`]?.region !== mapObj[`${lat}${long + 1}`]?.region &&
+      mapObj[`${lat}${long + 1}`]?.type !== "ocean"
+    ) {
+      borderClassName += " regionalRightBorder";
     }
 
     if (
@@ -46,6 +56,11 @@ function Block({
       mapObj[`${lat + 1}${long}`]?.type !== "ocean"
     ) {
       borderClassName += " bottomBorder";
+    } else if (
+      mapObj[`${lat}${long}`]?.region !== mapObj[`${lat + 1}${long}`]?.region &&
+      mapObj[`${lat + 1}${long}`]?.type !== "ocean"
+    ) {
+      borderClassName += " regionalBottomBorder";
     }
 
     if (
@@ -54,6 +69,11 @@ function Block({
       mapObj[`${lat - 1}${long}`]?.type !== "ocean"
     ) {
       borderClassName += " topBorder";
+    } else if (
+      mapObj[`${lat}${long}`]?.region !== mapObj[`${lat - 1}${long}`]?.region &&
+      mapObj[`${lat - 1}${long}`]?.type !== "ocean"
+    ) {
+      borderClassName += " regionalTopBorder";
     }
   }
 
