@@ -45,18 +45,22 @@
 }
 
 .regionalLeftBorder {
+  box-sizing: border-box;
   border-left: 1px dashed gray;
 }
 
 .regionalRightBorder {
+  box-sizing: border-box;
   border-right: 1px dashed gray;
 }
 
 .regionalTopBorder {
+  box-sizing: border-box;
   border-top: 1px dashed gray;
 }
 
 .regionalBottomBorder {
+  box-sizing: border-box;
   border-bottom: 1px dashed gray;
 }
 

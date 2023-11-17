@@ -194,91 +194,77 @@ var mapObj = {
     lat: 1,
     long: 1,
     type: "land",
-    country: "India",
     region: "Manipur",
   },
   12: {
     lat: 1,
     long: 2,
-    type: "ocean",
-    country: "India",
+    type: "land",
     region: "Manipur",
   },
   13: {
     lat: 1,
     long: 3,
     type: "land",
-    country: "India",
-    region: "Manipur",
+    region: "Pabna",
   },
   14: {
     lat: 1,
     long: 4,
     type: "land",
-    country: "India",
-    region: "Manipur",
+    region: "Pabna",
   },
   21: {
     lat: 2,
     long: 1,
     type: "land",
-    country: "India",
-    region: "Manipur",
+    region: "Kolkata",
   },
   22: {
     lat: 2,
     long: 2,
     type: "land",
-    country: "Bangladesh",
-    region: "Pabna",
+    region: "Kolkata",
   },
   23: {
     lat: 2,
     long: 3,
-    type: "land",
-    country: "India",
-    region: "Kerala",
-    localeName: "Kerala",
-    localeType: "port",
+    type: "ocean",
   },
   24: {
     lat: 2,
     long: 4,
     type: "land",
-    country: "India",
-    region: "Nagaland",
+    region: "Dhaka",
   },
   31: {
     lat: 3,
     long: 1,
     type: "land",
-    country: "India",
-    region: "Nagaland",
+    region: "Kolkata",
   },
   32: {
     lat: 3,
     long: 2,
     type: "ocean",
-    country: "India",
-    region: "Nagaland",
+    region: "Kerala",
+    localeName: "Kerala",
+    localeType: "port",
   },
   33: {
     lat: 3,
     long: 3,
-    type: "land",
-    country: "India",
-    region: "Nagaland",
+    type: "ocean",
   },
   34: {
     lat: 3,
     long: 4,
-    type: "ocean",
-    country: "India",
-    region: "Nagaland",
+    type: "land",
+    region: "Dhaka",
   },
 };
 
-var regionData = {
+var regionObj = {
   Pabna: {
     country: "Bangladesh",
     infantry: 20,
@@ -303,39 +289,62 @@ var regionData = {
     fieldArtillery: 8,
     specialForces: 4,
   },
+  Nagaland: {
+    country: "India",
+    infantry: 25,
+    airDefenseArtillery: 2,
+    armor: 4,
+    fieldArtillery: 8,
+    specialForces: 4,
+  },
+  Kerala: {
+    country: "India",
+    infantry: 25,
+    airDefenseArtillery: 2,
+    armor: 4,
+    fieldArtillery: 8,
+    specialForces: 4,
+  },
+  Kolkata: {
+    country: "India",
+    infantry: 25,
+    airDefenseArtillery: 2,
+    armor: 4,
+    fieldArtillery: 8,
+    specialForces: 4,
+  },
 };
 
 function moveUnits(type, number, from, to) {
-  if (regionData[from][type] >= number) {
-    regionData[from][type] -= number;
-    regionData[to][type] += number;
+  if (regionObj[from][type] >= number) {
+    regionObj[from][type] -= number;
+    regionObj[to][type] += number;
   }
 }
 
 function groundAttack(from, to) {
   let attackerPoints =
-    regionData[from].infantry +
-    regionData[from].fieldArtillery * 2 +
-    regionData[from].specialForces * 3 +
-    +regionData[from].armor * 4;
+    regionObj[from].infantry +
+    regionObj[from].fieldArtillery * 2 +
+    regionObj[from].specialForces * 3 +
+    +regionObj[from].armor * 4;
   let defenderPoints =
-    regionData[to].infantry +
-    regionData[to].fieldArtillery * 2 +
-    regionData[to].specialForces * 3 +
-    +regionData[to].armor * 4;
-
-  console.log(attackerPoints, defenderPoints);
+    regionObj[to].infantry +
+    regionObj[to].fieldArtillery * 2 +
+    regionObj[to].specialForces * 3 +
+    +regionObj[to].armor * 4;
 
   if (attackerPoints > defenderPoints) {
     console.log("Bangladesh wins Manipur");
-    mapData.forEach((block) => {
-      if (block.region === to) {
-        regionData[to].country = regionData[from].country;
-        block.country = regionData[from].country;
+
+    Object.keys(mapObj).forEach((e) => {
+      if (mapObj[e].region === to) {
+        // mapObj[e].country = regionObj[from].country;
+        regionObj[to].country = regionObj[from].country;
       }
     });
   } else {
-    console.log(regionData[to].country, " wins");
+    console.log(regionObj[to].country, " wins");
   }
 }
 
@@ -344,7 +353,7 @@ function Map() {
   const [selectedRegion, setSelectedRegion] = useState("");
   const [choice, setChoice] = useState("");
   //console.log(selectedRegion.length);
-  // console.log(regionData[selectedRegion]);
+  //console.log(regionData[selectedRegion]);
 
   console.log(choice);
 
@@ -375,17 +384,17 @@ function Map() {
       ))} */}
 
       {Object.keys(mapObj).map((block, i) => (
-        <div onClick={() => setSelectedRegion(block.region)}>
+        <div onClick={() => setSelectedRegion(mapObj[block].region)}>
           <Block
             lat={mapObj[block].lat}
             long={mapObj[block].long}
             type={mapObj[block].type}
-            country={mapObj[block].country}
             region={mapObj[block].region}
             localeType={mapObj[block].localeType}
             localeName={mapObj[block].localeName}
             showCoordinates={showCoordinates}
             mapObj={mapObj}
+            regionObj={regionObj}
           />
         </div>
       ))}
@@ -399,18 +408,16 @@ function Map() {
         {selectedRegion?.length > 0 && (
           <>
             <div>{selectedRegion}</div>
-            <div>Country: {regionData[selectedRegion].country}</div>
-            <div>Infantry: {regionData[selectedRegion].infantry}</div>
-            <div>Armor: {regionData[selectedRegion].armor}</div>
-            <div>
-              Special Forces: {regionData[selectedRegion].specialForces}
-            </div>
+            <div>Country: {regionObj[selectedRegion].country}</div>
+            <div>Infantry: {regionObj[selectedRegion].infantry}</div>
+            <div>Armor: {regionObj[selectedRegion].armor}</div>
+            <div>Special Forces: {regionObj[selectedRegion].specialForces}</div>
             <div>
               Air Defense Artillery:{" "}
-              {regionData[selectedRegion].airDefenseArtillery}
+              {regionObj[selectedRegion].airDefenseArtillery}
             </div>
             <div>
-              Field Artillery: {regionData[selectedRegion].fieldArtillery}
+              Field Artillery: {regionObj[selectedRegion].fieldArtillery}
             </div>
           </>
         )}
@@ -429,7 +436,7 @@ function Map() {
             move 10 infantry from dhaka to pabna
           </option>
         </select>
-        <button>Do it!</button>
+        <button>Do it! (Useless)</button>
       </div>
     </div>
   );

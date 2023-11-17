@@ -8,69 +8,66 @@ function Block({
   localeName,
   lat,
   long,
-  country,
   region,
   showCoordinates,
   mapObj,
+  regionObj,
 }) {
   let borderClassName = "";
 
   // console.log(mapObj);
 
-  console.log(mapObj[`${lat}${long - 1}`]?.type, lat, long);
+  let leftRegion = mapObj[`${lat}${long - 1}`]?.region;
+  let rightRegion = mapObj[`${lat}${long + 1}`]?.region;
+  let bottomRegion = mapObj[`${lat + 1}${long}`]?.region;
+  let topRegion = mapObj[`${lat - 1}${long}`]?.region;
 
-  console.log(
-    mapObj[`${lat}${long}`]?.country !== mapObj[`${lat}${long - 1}`]?.country
-  );
+  let country = regionObj[region]?.country;
 
   if (type !== "ocean") {
     if (
-      mapObj[`${lat}${long}`]?.country !==
-        mapObj[`${lat}${long - 1}`]?.country &&
+      regionObj[region]?.country !== regionObj[leftRegion]?.country &&
       mapObj[`${lat}${long - 1}`]?.type !== "ocean"
     ) {
       borderClassName += " leftBorder";
     } else if (
-      mapObj[`${lat}${long}`]?.region !== mapObj[`${lat}${long - 1}`]?.region &&
+      region !== leftRegion &&
       mapObj[`${lat}${long - 1}`]?.type !== "ocean"
     ) {
       borderClassName += " regionalLeftBorder";
     }
 
     if (
-      mapObj[`${lat}${long}`]?.country !==
-        mapObj[`${lat}${long + 1}`]?.country &&
+      regionObj[region]?.country !== regionObj[rightRegion]?.country &&
       mapObj[`${lat}${long + 1}`]?.type !== "ocean"
     ) {
       borderClassName += " rightBorder";
     } else if (
-      mapObj[`${lat}${long}`]?.region !== mapObj[`${lat}${long + 1}`]?.region &&
+      region !== rightRegion &&
       mapObj[`${lat}${long + 1}`]?.type !== "ocean"
     ) {
       borderClassName += " regionalRightBorder";
     }
 
     if (
-      mapObj[`${lat}${long}`]?.country !==
-        mapObj[`${lat + 1}${long}`]?.country &&
+      regionObj[region]?.country !== regionObj[bottomRegion]?.country &&
       mapObj[`${lat + 1}${long}`]?.type !== "ocean"
     ) {
       borderClassName += " bottomBorder";
     } else if (
-      mapObj[`${lat}${long}`]?.region !== mapObj[`${lat + 1}${long}`]?.region &&
+      region !== bottomRegion &&
       mapObj[`${lat + 1}${long}`]?.type !== "ocean"
     ) {
       borderClassName += " regionalBottomBorder";
     }
 
     if (
-      mapObj[`${lat}${long}`]?.country !==
-        mapObj[`${lat - 1}${long}`]?.country &&
+      regionObj[region]?.country !== regionObj[topRegion]?.country &&
       mapObj[`${lat - 1}${long}`]?.type !== "ocean"
     ) {
       borderClassName += " topBorder";
     } else if (
-      mapObj[`${lat}${long}`]?.region !== mapObj[`${lat - 1}${long}`]?.region &&
+      region !== topRegion &&
       mapObj[`${lat - 1}${long}`]?.type !== "ocean"
     ) {
       borderClassName += " regionalTopBorder";
