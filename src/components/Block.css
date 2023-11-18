@@ -1,7 +1,7 @@
 .block_container {
   width: 32px;
   height: 32px;
-  font-size: xx-small;
+  font-size: 8px;
 }
 
 .ocean {
@@ -44,6 +44,27 @@
   border-color: orange;
 }
 
+.Bangladesh {
+  border-color: green;
+}
+
+.Nepal {
+  border-color: black;
+}
+
+.Mayanmar {
+  border-color: blue;
+}
+
+.SriLanka {
+  border-color: purple;
+}
+
+.selected_region {
+  box-sizing: border-box;
+  background-color: darkred;
+}
+
 .regionalLeftBorder {
   box-sizing: border-box;
   border-left: 1px dashed gray;
@@ -62,20 +83,4 @@
 .regionalBottomBorder {
   box-sizing: border-box;
   border-bottom: 1px dashed gray;
-}
-
-.Bangladesh {
-  border-color: black;
-}
-
-.Nepal {
-  border-color: black;
-}
-
-.Mayanmar {
-  border-color: blue;
-}
-
-.SriLanka {
-  border-color: purple;
 }

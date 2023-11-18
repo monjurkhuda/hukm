@@ -12,6 +12,7 @@ function Block({
   showCoordinates,
   mapObj,
   regionObj,
+  selectedRegion,
 }) {
   let borderClassName = "";
 
@@ -24,14 +25,20 @@ function Block({
 
   let country = regionObj[region]?.country;
 
+  if (selectedRegion === region) {
+    borderClassName += " selected_region";
+  }
+
   if (type !== "ocean") {
     if (
       regionObj[region]?.country !== regionObj[leftRegion]?.country &&
+      leftRegion &&
       mapObj[`${lat}${long - 1}`]?.type !== "ocean"
     ) {
       borderClassName += " leftBorder";
     } else if (
       region !== leftRegion &&
+      leftRegion &&
       mapObj[`${lat}${long - 1}`]?.type !== "ocean"
     ) {
       borderClassName += " regionalLeftBorder";
@@ -39,11 +46,13 @@ function Block({
 
     if (
       regionObj[region]?.country !== regionObj[rightRegion]?.country &&
+      rightRegion &&
       mapObj[`${lat}${long + 1}`]?.type !== "ocean"
     ) {
       borderClassName += " rightBorder";
     } else if (
       region !== rightRegion &&
+      rightRegion &&
       mapObj[`${lat}${long + 1}`]?.type !== "ocean"
     ) {
       borderClassName += " regionalRightBorder";
@@ -51,11 +60,13 @@ function Block({
 
     if (
       regionObj[region]?.country !== regionObj[bottomRegion]?.country &&
+      bottomRegion &&
       mapObj[`${lat + 1}${long}`]?.type !== "ocean"
     ) {
       borderClassName += " bottomBorder";
     } else if (
       region !== bottomRegion &&
+      bottomRegion &&
       mapObj[`${lat + 1}${long}`]?.type !== "ocean"
     ) {
       borderClassName += " regionalBottomBorder";
@@ -63,11 +74,13 @@ function Block({
 
     if (
       regionObj[region]?.country !== regionObj[topRegion]?.country &&
+      topRegion &&
       mapObj[`${lat - 1}${long}`]?.type !== "ocean"
     ) {
       borderClassName += " topBorder";
     } else if (
       region !== topRegion &&
+      topRegion &&
       mapObj[`${lat - 1}${long}`]?.type !== "ocean"
     ) {
       borderClassName += " regionalTopBorder";

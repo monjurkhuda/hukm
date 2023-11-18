@@ -299,11 +299,6 @@ var regionObj = {
   },
   Kerala: {
     country: "India",
-    infantry: 25,
-    airDefenseArtillery: 2,
-    armor: 4,
-    fieldArtillery: 8,
-    specialForces: 4,
   },
   Kolkata: {
     country: "India",
@@ -335,7 +330,7 @@ function groundAttack(from, to) {
     +regionObj[to].armor * 4;
 
   if (attackerPoints > defenderPoints) {
-    console.log("Bangladesh wins Manipur");
+    console.log(regionObj[from].country, "conquers", to);
 
     Object.keys(mapObj).forEach((e) => {
       if (mapObj[e].region === to) {
@@ -354,8 +349,6 @@ function Map() {
   const [choice, setChoice] = useState("");
   //console.log(selectedRegion.length);
   //console.log(regionData[selectedRegion]);
-
-  console.log(choice);
 
   if (choice === "move10infantryfromdhakatopabna") {
     moveUnits("infantry", 10, "Dhaka", "Pabna");
@@ -395,6 +388,7 @@ function Map() {
             showCoordinates={showCoordinates}
             mapObj={mapObj}
             regionObj={regionObj}
+            selectedRegion={selectedRegion}
           />
         </div>
       ))}
