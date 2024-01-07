@@ -377,7 +377,10 @@ function Map() {
       ))} */}
 
       {Object.keys(mapObj).map((block, i) => (
-        <div onClick={() => setSelectedRegion(mapObj[block].region)}>
+        <div
+          onMouseEnter={() => setSelectedRegion(mapObj[block].region)}
+          //onClick={() => setSelectedRegion(mapObj[block].region)}
+        >
           <Block
             lat={mapObj[block].lat}
             long={mapObj[block].long}

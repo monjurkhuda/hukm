@@ -88,7 +88,10 @@ function Block({
   }
 
   return (
-    <div className={`block_container ${type} ${country} ${borderClassName}`}>
+    <div
+      className={`block_container ${type} ${country} ${borderClassName}`}
+      onMouseOver={() => console.log("hovering")}
+    >
       {showCoordinates && (
         <>
           {lat}, {long}
